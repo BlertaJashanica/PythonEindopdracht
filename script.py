@@ -1,22 +1,40 @@
+import yaml
 from github import Github
+
+# Lees het YAML-bestand
+with open('config.yaml', 'r') as file:
+    config_data = yaml.safe_load(file)
+
 
 g = Github("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")
 
-# Specify the repository details
+
 repo_owner = "BlertaJashanica"
 repo_name = "PythonEindopdracht"
 file_path = "signals.txt"
 
-# Get the repository
+
 repo = g.get_repo(f"{repo_owner}/{repo_name}")
 
-# Get the file contents
+
 file = repo.get_contents(file_path)
 
-# Get the last commit that modified the file
-last_commit = repo.get_commits(path=file_path)[0]
 
-# Extract the commit details
-commit_sha = last_commit.sha
-commit_message = last_commit.commit.message
-commit_author = last_commit.commit.author.name
+last_commit = repo.get_commits()[0]
+
+# Check the time since the last commit
+commit_time = last_commit.commit.committer.date.timestamp()
+current_time = time.time()
+time_diff = current_time - commit_time
+
+# Get the file content from the last commit if it's within the last 60 seconds
+if time_diff <= 60:
+    file_content = repo.get_contents(file_path, ref=last_commit.sha).content.decode("utf-8")
+else:
+    file_content = ""
+
+
+parent_vars = config_data.get(file_content, {})
+var1_value = parent_vars.get('module')
+var2_value = parent_vars.get('class')
+var2_value = parent_vars.get('function')
