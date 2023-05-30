@@ -1,18 +1,18 @@
 
 Info:
   class: InfoModule
-  module: modules.py
+  module: modules
   function: run
 
 
 Keylogger:
   class: InfoModule
-  module: modules.py
+  module: modules
   function: run
 
 Screenshot:
   class: ScreenshotModule
-  module: modules.py
+  module: modules
   function: run
 
 

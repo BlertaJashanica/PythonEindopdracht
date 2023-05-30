@@ -5,9 +5,9 @@ Username: jasha
 Home Directory: C:\Users\jasha
 CPU Count: 8
 Total Memory: 8434339840
-Available Memory: 1811881984
+Available Memory: 1392910336
 Total Disk Space: 510912376832
-Used Disk Space: 454652534784
+Used Disk Space: 454786695168
 Processor Architecture: AMD64
 Network Name: LAPTOP-40AM80CP
 Processor: Intel64 Family 6 Model 142 Stepping 12, GenuineIntel
