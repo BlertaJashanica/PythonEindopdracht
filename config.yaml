@@ -1,8 +1,21 @@
 
 Info:
-  module: modules.py
   class: InfoModule
+  module: modules.py
   function: run
+
+
+Keylogger:
+  class: InfoModule
+  module: modules.py
+  function: run
+
+Screenshot:
+  class: ScreenshotModule
+  module: modules.py
+  function: run
+
+
 
 
 

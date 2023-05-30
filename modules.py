@@ -5,7 +5,7 @@ import psutil
 
 class Module:
     def __init__(self):
-        pass
+        data = {}
 
     def run():
         pass
@@ -16,41 +16,40 @@ class InfoModule(Module):
     def __init__(self):
         super().__init__()
 
-    def run():
-        data = {}
-
+    def run(self):
+    
         hostname = socket.gethostname()
-        data["Hostname"] = hostname
+        self.data["Hostname"] = hostname
 
         ip_address = socket.gethostbyname(hostname)
-        data["IP Address"] = ip_address
+        self.data["IP Address"] = ip_address
 
-        data["Operating System"] = platform.system()
+        self.data["Operating System"] = platform.system()
 
         username = os.getlogin()
-        data["Username"] = username
+        self.data["Username"] = username
 
         home_dir = os.path.expanduser("~")
-        data["Home Directory"] = home_dir
+        self.data["Home Directory"] = home_dir
 
         cpu_count = psutil.cpu_count(logical=True)
-        data["CPU Count"] = cpu_count
+        self.data["CPU Count"] = cpu_count
 
         memory = psutil.virtual_memory()
-        data["Total Memory"] = memory.total
-        data["Available Memory"] = memory.available
+        self.data["Total Memory"] = memory.total
+        self.data["Available Memory"] = memory.available
 
         disk = psutil.disk_usage('/')
-        data["Total Disk Space"] = disk.total
-        data["Used Disk Space"] = disk.used
+        self.data["Total Disk Space"] = disk.total
+        self.data["Used Disk Space"] = disk.used
 
-        data["Processor Architecture"] = platform.machine()
-        data["Network Name"] = platform.node()
-        data["Processor"] = platform.processor()
+        self.data["Processor Architecture"] = platform.machine()
+        self.data["Network Name"] = platform.node()
+        self.data["Processor"] = platform.processor()
 
 
 
-    def log():
+    def log(self):
         for key, value in data.items():
             print(key + ":", value)
 

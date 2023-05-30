@@ -1,5 +1,6 @@
 import yaml
 from github import Github
+import modules
 
 # Lees het YAML-bestand
 with open('config.yaml', 'r') as file:
@@ -35,6 +36,14 @@ else:
 
 
 parent_vars = config_data.get(file_content, {})
-var1_value = parent_vars.get('module')
-var2_value = parent_vars.get('class')
-var2_value = parent_vars.get('function')
+module = parent_vars.get('module')
+moduleClass = parent_vars.get('class')
+moduleFunction = parent_vars.get('function')
+
+classe = module.moduleClass
+object = classe()
+output = object.moduleFunction()
+
+
+
+
