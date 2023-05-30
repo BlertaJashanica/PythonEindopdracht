@@ -1,6 +1,8 @@
 import yaml
 from github import Github
 import modules
+import time
+
 
 # Lees het YAML-bestand
 with open('config.yaml', 'r') as file:

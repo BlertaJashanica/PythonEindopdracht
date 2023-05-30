@@ -50,7 +50,7 @@ class InfoModule(Module):
 
 
     def log(self):
-        for key, value in data.items():
+        for key, value in self.data.items():
             print(key + ":", value)
 
 
