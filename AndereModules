@@ -1,0 +1,87 @@
+#Log Module
+
+'''
+
+import logging
+
+class LogModule:
+    def __init__(self, log_file):
+        self.log_file = log_file
+        logging.basicConfig(filename=self.log_file, level=logging.INFO,
+                            format='%(asctime)s [%(levelname)s] %(message)s')
+
+    def log_event(self, message):
+        logging.info(message)
+
+# Gebruik voorbeeld
+log_module = LogModule("path/to/log/file.txt")
+log_module.log_event("This is a log message.")
+
+
+ANDERE VERSIE 
+
+
+import logging
+
+def setup_logger(log_file):
+    logger = logging.getLogger(__name__)
+    logger.setLevel(logging.INFO)
+
+    formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
+
+    file_handler = logging.FileHandler(log_file)
+    file_handler.setLevel(logging.INFO)
+    file_handler.setFormatter(formatter)
+
+    console_handler = logging.StreamHandler()
+    console_handler.setLevel(logging.INFO)
+    console_handler.setFormatter(formatter)
+
+    logger.addHandler(file_handler)
+    logger.addHandler(console_handler)
+
+    return logger
+
+def log_info(logger, message):
+    logger.info(message)
+
+def log_warning(logger, message):
+    logger.warning(message)
+
+def log_error(logger, message):
+    logger.error(message)
+
+# Voorbeeldgebruik:
+log_file = 'app.log'
+logger = setup_logger(log_file)
+
+log_info(logger, 'Dit is een informatieve logboodschap.')
+log_warning(logger, 'Dit is een waarschuwingslogboodschap.')
+log_error(logger, 'Dit is een foutlogboodschap.')
+
+'''
+
+
+
+
+
+
+
+ #Screenshot Maker-module in Python:
+'''
+ import pyautogui
+
+class ScreenshotMaker:
+    def __init__(self, save_directory):
+        self.save_directory = save_directory
+
+    def capture_screenshot(self):
+        screenshot = pyautogui.screenshot()
+        screenshot_path = f"{self.save_directory}/screenshot.png"
+        screenshot.save(screenshot_path)
+        print("Screenshot saved successfully!")
+
+# Gebruik voorbeeld
+screenshot_maker = ScreenshotMaker("path/to/save/directory")
+screenshot_maker.capture_screenshot()
+'''
