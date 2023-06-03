@@ -21,44 +21,43 @@ class Module:
 class InfoModule(Module):
     def __init__(self):
         super().__init__()
+        self.data =  {}
 
     def run(self):
-        data = {}
         hostname = socket.gethostname()
-        data["Hostname"] = hostname
+        self.data["Hostname"] = hostname
 
         ip_address = socket.gethostbyname(hostname)
-        data["IP Address"] = ip_address
+        self.data["IP Address"] = ip_address
 
-        data["Operating System"] = platform.system()
+        self.data["Operating System"] = platform.system()
 
         username = os.getlogin()
-        data["Username"] = username
+        self.data["Username"] = username
 
         home_dir = os.path.expanduser("~")
-        data["Home Directory"] = home_dir
+        self.data["Home Directory"] = home_dir
 
         cpu_count = psutil.cpu_count(logical=True)
-        data["CPU Count"] = cpu_count
+        self.data["CPU Count"] = cpu_count
 
         memory = psutil.virtual_memory()
-        data["Total Memory"] = memory.total
-        data["Available Memory"] = memory.available
+        self.data["Total Memory"] = memory.total
+        self.data["Available Memory"] = memory.available
 
         disk = psutil.disk_usage('/')
-        data["Total Disk Space"] = disk.total
-        data["Used Disk Space"] = disk.used
+        self.data["Total Disk Space"] = disk.total
+        self.data["Used Disk Space"] = disk.used
 
-        data["Processor Architecture"] = platform.machine()
-        data["Network Name"] = platform.node()
-        data["Processor"] = platform.processor()
-
-        return data
+        self.data["Processor Architecture"] = platform.machine()
+        self.data["Network Name"] = platform.node()
+        self.data["Processor"] = platform.processor()
 
 
 
-    def log(self, data ):
-        for key, value in data.items():
+
+    def log(self):
+        for key, value in self.data.items():
            self.logmessage += str(key) + ": " + str(value) + "\n"
         return self.logmessage
 
@@ -73,12 +72,11 @@ class MailModule(Module):
         # Verbindingsinstellingen voor de SMTP-server
         smtp_server = 'smtp.example.com'
         smtp_port = 587
-        username = 'your_username'
-        password = 'your_password'
-
+        username = 'example@example.com'
+        password = 'example'
         # E-mailgegevens
-        sender = 'your_email@example.com'
-        recipient = 'recipient@example.com'
+        sender = 'example@example.come'
+        recipient = 'example@example.com'
         subject = 'Test Email'
         message = 'Dit is een testbericht.'
 
@@ -98,7 +96,7 @@ class MailModule(Module):
             server.sendmail(sender, recipient, email.as_string())
             self.logmessage += 'E-mail succesvol verzonden!'
         except Exception as e:
-            self.logmessage += 'Er is een fout opgetreden bij het verzenden van de e-mail:', str(e)
+            self.logmessage += 'Er is een fout opgetreden bij het verzenden van de e-mail:' + str(e)
         finally:
             if server is not None:
                 server.quit()
@@ -112,8 +110,8 @@ class DiskModule(Module):
 
 
     def run(self):
-        source_path = '/pad/naar/bronmap'
-        destination_path = '/pad/naar/doelmap'
+        source_path = './DiskSourceMap'
+        destination_path = './DiskDestinationMap'
 
         zip_file = self.analyze_disk_structure(source_path, destination_path)
         if zip_file:

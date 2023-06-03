@@ -5,16 +5,20 @@ Info:
   function: run
 
 
-Keylogger:
-  class: InfoModule
+Mail:
+  class: MailModule
   module: modules
   function: run
 
-Screenshot:
-  class: ScreenshotModule
+Disk:
+  class: DiskModule
   module: modules
   function: run
 
+Key:
+  class: KeyModule
+  module: modules
+  function: run
 
 
 

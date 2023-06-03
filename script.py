@@ -5,6 +5,8 @@ import time
 from datetime import datetime, timezone
 import importlib
 from git import Repo
+import requests
+
 
 # Lees het YAML-bestand
 with open('config.yaml', 'r') as file:
@@ -28,8 +30,8 @@ current_time = datetime.now(timezone.utc)  # Get current time in datetime object
 
 time_diff = (current_time - commit_time).total_seconds()  # Calculate time difference in seconds
 
-# Get the file content from the last commit if it's within the last 60 seconds
-if time_diff <= 70000:
+# Get the file content from the last commit if it's within the last 120 seconds
+if time_diff <= 12000:
     file_content = repo.get_contents(file_path, ref=last_commit.sha).decoded_content.decode("utf-8").split()
 else:
     file_content = ""
@@ -44,37 +46,55 @@ if module is not None:
     class_object = getattr(module, moduleClass)
     instance = class_object()
     function = getattr(instance, moduleFunction)
-    data = function()
+    function()
 
     
     file_name = 'output.txt'
     moduleFunction = 'log'
     function = getattr(instance, moduleFunction)
-    output = function(data)
+    output = function()
     
     with open(file_name, 'w') as file:
         file.write(output)
     
-    
-    from git import Repo
 
-    # Provide the path to the repository
-    repo_path = 'BlertaJashanica/PythonEindopdracht'
+    repository_owner = "BlertaJashanica"
+    repository_name = "PythonEindopdracht"
+    file_path = "output.txt"
+    file_content = output
+    github_token = "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"
+    commit_message = 'updated output'
 
-    # Open the repository
-    repo = Repo(repo_path)
+    api_url = f"https://api.github.com/repos/{repository_owner}/{repository_name}/contents/{file_path}"
+    headers = {
+        "Authorization": f"Token {github_token}",
+        "Accept": "application/vnd.github.v3+json"
+    }
 
-    # Specify the file path to be committed
-    file_path = 'BlertaJashanica/PythonEindopdracht/output.txt'
+    import base64
+    file_content_encoded = base64.b64encode(file_content.encode()).decode()
 
-    # Specify the commit message
-    commit_message = 'Added file.txt'
+    # Get the current file contents
+    response = requests.get(api_url, headers=headers)
+    if response.status_code == 200:
+        current_file = response.json()
+        sha = current_file["sha"]
+    else:
+        sha = None
 
-    # Add the file to the index
-    repo.index.add([file_path])
+    # Create the payload
+    payload = {
+        "message": commit_message,
+        "content": file_content_encoded,
+        "sha": sha
+    }
 
-    # Commit the changes
-    repo.index.commit(commit_message)
+    # Push the file to GitHub
+    response = requests.put(api_url, json=payload, headers=headers)
+    if response.status_code == 201:
+        print("File pushed successfully!")
+    else:
+        print("An error occurred while pushing the file:", response.text)
 
 
 else:
