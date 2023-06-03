@@ -1,1 +1,13 @@
-
+Hostname: LAPTOP-40AM80CP
+IP Address: 192.168.49.1
+Operating System: Windows
+Username: jasha
+Home Directory: C:\Users\jasha
+CPU Count: 8
+Total Memory: 8434339840
+Available Memory: 1668083712
+Total Disk Space: 510912376832
+Used Disk Space: 457497284608
+Processor Architecture: AMD64
+Network Name: LAPTOP-40AM80CP
+Processor: Intel64 Family 6 Model 142 Stepping 12, GenuineIntel
