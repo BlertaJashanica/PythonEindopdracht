@@ -1,1 +1,1 @@
-Schijfstructuur succesvol geanalyseerd en gecomprimeerd: 
+Er is een fout opgetreden bij het verzenden van de e-mail:[WinError 10060] Een verbindingspoging is mislukt omdat de verbonden party niet correct heeft geantwoord na een bepaalde tijd, of de gemaakte verbinding is mislukt omdat de verbonden host niet heeft geantwoord
