@@ -1,6 +1,6 @@
 # PythonEindopdracht
 
-## De werking/features
+## De werking/featurese/keuzes
 
 1. Modules.py
 
@@ -26,6 +26,7 @@
 - Het signaalwoord uit signals.txt wordt gekoppeld via config.yaml aan de overeenkomstige module.
 - Output van de log functie van de module wordt naar output.txt weggeschreven.
 - output.txt wordt gepusht naar GitHub.
+- requirements om het script te runnen, te vinden bij requirements.txt  
 
 
 
