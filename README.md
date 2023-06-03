@@ -11,7 +11,7 @@
 
 
 2. Formaat van config bestand
-3. 
+
 - In het config bestand wordt een structuur gebruikt. 
 - Het signaalwoord van signals.txt wordt gemapt met de parent label van config.yaml. 
 - De child labels bevatten informatie over het  bestand, de klasse en de functie die moeten worden uitgevoerd. 
