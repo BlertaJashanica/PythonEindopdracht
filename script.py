@@ -24,13 +24,12 @@ file = repo.get_contents(file_path)
 
 last_commit = repo.get_commits()[0]
 
-commit_time = last_commit.commit.committer.date.replace(tzinfo=timezone.utc)  # Make commit time offset-aware
+commit_time = last_commit.commit.committer.date.replace(tzinfo=timezone.utc)  
 
-current_time = datetime.now(timezone.utc)  # Get current time in datetime object with timezone info
+current_time = datetime.now(timezone.utc)  
 
-time_diff = (current_time - commit_time).total_seconds()  # Calculate time difference in seconds
+time_diff = (current_time - commit_time).total_seconds()  
 
-# Get the file content from the last commit if it's within the last 120 seconds
 if time_diff <= 120:
     file_content = repo.get_contents(file_path, ref=last_commit.sha).decoded_content.decode("utf-8").split()
 else:
@@ -74,7 +73,6 @@ if module is not None:
     import base64
     file_content_encoded = base64.b64encode(file_content.encode()).decode()
 
-    # Get the current file contents
     response = requests.get(api_url, headers=headers)
     if response.status_code == 200:
         current_file = response.json()
@@ -82,14 +80,12 @@ if module is not None:
     else:
         sha = None
 
-    # Create the payload
     payload = {
         "message": commit_message,
         "content": file_content_encoded,
         "sha": sha
     }
 
-    # Push the file to GitHub
     response = requests.put(api_url, json=payload, headers=headers)
     if response.status_code == 201:
         print("File pushed successfully!")
