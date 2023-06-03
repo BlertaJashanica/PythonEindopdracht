@@ -30,7 +30,7 @@
 
 ## moeilijkheden 
 - Ik heb de keylogger niet kunnen uitvoeren/testen omdat mijn pc de module als een bedreiging zag. 
-- De MailModule werkte maar ik heb bij username, password , sender en recipient example.@example.com geschreven anders moest ik mijn gegevens laten staan.
+- De MailModule werkte maar ik heb bij username, password , sender en recipient , example.@example.com geschreven anders moest ik mijn gegevens laten staan.
 
 ## problemen
 Ik heb al de problemen kunnen oplossen 
