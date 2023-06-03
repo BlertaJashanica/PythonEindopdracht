@@ -8,6 +8,7 @@
 - De modules hebben een log en run functie. Bij de run functie wordt de module uitgevoerd en de log functie wordt gebruikt om te loggen naar het output bestand. Het zijn virtuele functies.
 - Door deze 2 virtuele functies is het makkelijk om een module toe te voegen die makkelijk zal werken met script.py.
 - self.logmessage bevat de boodschap die gelogd zal worden naar de output. Dit wordt gebruikt bij elke module.
+- Bij de DiskModule word er gebruikt gemaakt van een destination en source directory. Die heb ik voor het testen toegevoegt aan de folder van het project genaamt: DiskDestinationMap en DiskSourceMap 
 
 
 2. Formaat van config bestand
@@ -33,6 +34,6 @@
 - De MailModule werkt maar ik heb bij username, password , sender en recipient , example.@example.com geschreven anders moest ik mijn gegevens laten staan.
 
 ## problemen
-Ik heb al de problemen kunnen oplossen 
+Ik heb al de problemen kunnen oplossen. 
 
 
