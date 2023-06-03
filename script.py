@@ -31,7 +31,7 @@ current_time = datetime.now(timezone.utc)  # Get current time in datetime object
 time_diff = (current_time - commit_time).total_seconds()  # Calculate time difference in seconds
 
 # Get the file content from the last commit if it's within the last 120 seconds
-if time_diff <= 12000:
+if time_diff <= 120:
     file_content = repo.get_contents(file_path, ref=last_commit.sha).decoded_content.decode("utf-8").split()
 else:
     file_content = ""
